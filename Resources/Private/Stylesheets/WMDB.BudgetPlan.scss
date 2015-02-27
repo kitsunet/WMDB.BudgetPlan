@@ -1,17 +1,19 @@
 @import "settings";
 
+@import "../Libraries/bower_components/foundation-icon-fonts/foundation-icons";
+
 // Behold, here are all the Foundation components.
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/accordion";
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/alert-boxes";
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/block-grid";
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/breadcrumbs";
-//@import "../Libraries/bower_components/foundation/scss/foundation/components/button-groups";
+@import "../Libraries/bower_components/foundation/scss/foundation/components/button-groups";
 @import "../Libraries/bower_components/foundation/scss/foundation/components/buttons";
 @import "../Libraries/bower_components/foundation/scss/foundation/components/clearing";
-//@import "../Libraries/bower_components/foundation/scss/foundation/components/dropdown";
-//@import "../Libraries/bower_components/foundation/scss/foundation/components/dropdown-buttons";
+@import "../Libraries/bower_components/foundation/scss/foundation/components/dropdown";
+@import "../Libraries/bower_components/foundation/scss/foundation/components/dropdown-buttons";
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/flex-video";
-//@import "../Libraries/bower_components/foundation/scss/foundation/components/forms";
+@import "../Libraries/bower_components/foundation/scss/foundation/components/forms";
 @import "../Libraries/bower_components/foundation/scss/foundation/components/grid";
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/inline-lists";
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/joyride";
@@ -25,10 +27,10 @@
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/progress-bars";
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/reveal";
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/side-nav";
-//@import "../Libraries/bower_components/foundation/scss/foundation/components/split-buttons";
+@import "../Libraries/bower_components/foundation/scss/foundation/components/split-buttons";
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/sub-nav";
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/switch";
-//@import "../Libraries/bower_components/foundation/scss/foundation/components/tables";
+@import "../Libraries/bower_components/foundation/scss/foundation/components/tables";
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/tabs";
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/thumbs";
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/tooltips";

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title><f:render section="Title" /> :: BudgetPlan</title>
-	<!--<script type="application/javascript" src="<f:uri.resource package='WMDB.Forger' path='foundation-5.4.7/js/vendor/jquery.js' />"></script>-->
+
 	<!--<script type="application/javascript" src="<f:uri.resource package='WMDB.Forger' path='foundation-5.4.7/js/foundation.min.js' />"></script>-->
 	<!--<script type="application/javascript" src="<f:uri.resource package='WMDB.Forger' path='foundation-5.4.7/js/foundation/foundation.reveal.js' />"></script>-->
 	<!--<script type="application/javascript" src="<f:uri.resource package='WMDB.Forger' path='foundation-5.4.7/js/foundation/foundation.offcanvas.js' />"></script>-->
@@ -12,41 +12,66 @@
 	<f:base />
 </head>
 <body>
-<nav class="top-bar" data-topbar role="navigation">
-	<ul class="title-area">
-		<li class="name">
-			<h1><a href="/budget"><img src="<f:uri.resource package='WMDB.BudgetPlan' path='img/typo3-orange-200px-transparent.png' />" style="height: 45px" alt="BudgetPlaner"> CMS BudgetPlan</a> </h1>
-		</li>
-		<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-	</ul>
-
-	<section class="top-bar-section">
-		<!-- Right Nav Section -->
-		<ul class="right">
-			<li class="active"><a href="#">Right Button Active</a></li>
-			<li class="has-dropdown">
-				<a href="#">Right Button Dropdown</a>
-				<ul class="dropdown">
-					<li><a href="#">First link in dropdown</a></li>
-					<li class="active"><a href="#">Active link in dropdown</a></li>
-				</ul>
+	<div class="contain-to-grid">
+	<nav class="top-bar" data-topbar role="navigation">
+		<ul class="title-area">
+			<li class="name">
+				<h1><a href="/budget"><img src="<f:uri.resource package='WMDB.BudgetPlan' path='img/typo3-orange-200px-transparent.png' />" style="height: 45px" alt="BudgetPlaner"> CMS BudgetPlan</a> </h1>
 			</li>
+			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
 		</ul>
 
-		<!-- Left Nav Section -->
-		<ul class="left">
-			<li><a href="#">Left Nav Button</a></li>
-		</ul>
-	</section>
-</nav>
-<div class="row">
-	<div class="small-2 large-4 columns">Left</div>
-	<div class="small-4 large-4 columns">Middle</div>
-	<div class="small-6 large-4 columns">Right</div>
+		<section class="top-bar-section">
+			<f:render partial="RightMenu" />
+			<ul class="left">
+				<li><a href="#">Left Nav Button</a></li>
+			</ul>
+		</section>
+	</nav>
 </div>
-<script type="application/javascript">
-	$(document).foundation();
-</script>
+<div class="row">
+	<div class="small-12 columns">
+		<f:flashMessages as="messages">
+			<f:if condition="{messages}">
+				<f:for each="{messages}" as="message">
+					<f:switch expression="{message.severity}">
+						<f:case value="OK">
+							<div class="alert-box success radius" data-alert="">
+								{message}
+								<a href="#" class="close">&times;</a>
+							</div>
+						</f:case>
+						<f:case value="Warning">
+							<div class="alert-box warning radius" data-alert="">
+								{message} {message.severity}
+								<a href="#" class="close">&times;</a>
+							</div>
+						</f:case>
+						<f:case value="Notice">
+							<div class="alert-box info radius" data-alert="">
+								{message} {message.severity}
+								<a href="#" class="close">&times;</a>
+							</div>
+						</f:case>
+						<f:case value="Error">
+							<div class="alert-box alert radius" data-alert="">
+								{message} {message.severity}
+								<a href="#" class="close">&times;</a>
+							</div>
+						</f:case>
+						<f:defaultCase>
+							<div class="alert-box secondary radius" data-alert="">
+								{message} {message.severity}
+								<a href="#" class="close">&times;</a>
+							</div>
+						</f:defaultCase>
+					</f:switch>
+				</f:for>
+			</f:if>
+		</f:flashMessages>
+		<f:render section="Content" />
+	</div>
+</div>
+<script type="application/javascript" src="<f:uri.resource package='WMDB.BudgetPlan' path='js/WMDB.BudgetPlan-dist.js' />"></script>
 </body>
 </html>
