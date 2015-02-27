@@ -44,4 +44,24 @@ class TypeController extends ActionController {
 		$this->redirect('index');
 	}
 
+	/**
+	 * Edit Action
+	 *
+	 * @param Type $type
+	 */
+	public function editAction(Type $type) {
+		$this->view->assign('type', $type);
+	}
+
+	/**
+	 * Update Action
+	 *
+	 * @param Type $type
+	 */
+	public function updateAction(Type $type) {
+		$this->typeRepository->update($type);
+		$this->addFlashMessage('Type '.$type->getTitle().' updated.');
+		$this->redirect('index');
+	}
+
 }

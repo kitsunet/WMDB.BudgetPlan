@@ -1,0 +1,38 @@
+<f:layout name="Default" />
+
+<f:section name="Title">Edit Type</f:section>
+<f:section name="Javascripts"></f:section>
+
+<f:section name="Content">
+	<div class="row">
+		<div class="small-12 column">
+			<h1>Edit Type "{type.title}"</h1>
+			<f:form.validationResults>
+				<f:if condition="{validationResults.flattenedErrors}">
+					<ul class="errors">
+						<f:for each="{validationResults.flattenedErrors}" as="errors" key="propertyPath">
+							<li>{propertyPath}
+								<ul>
+									<f:for each="{errors}" as="error">
+										<li>{error.code}: {error}</li>
+									</f:for>
+								</ul>
+							</li>
+						</f:for>
+					</ul>
+				</f:if>
+			</f:form.validationResults>
+			<f:form action="update" object="{type}" name="type" enctype="multipart/form-data" data="{abide:yes}">
+				<div class="row">
+				    <label for="title">Title:
+				        <f:form.textfield property="title" placeholder="Title" title="This field should not be left blank." required="yes" additionalAttributes="{pattern:'[a-zA-Z0-9 ]+'}" />
+						<small class="error">Title is required!</small>
+				    </label>
+				</div>
+				<div class="row">
+					<f:form.submit value="Save" class="button success" />
+				</div>
+			</f:form>
+		</div>
+	</div>
+</f:section>
