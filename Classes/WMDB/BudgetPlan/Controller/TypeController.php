@@ -64,4 +64,16 @@ class TypeController extends ActionController {
 		$this->redirect('index');
 	}
 
+	/**
+	 * Delete Action
+	 *
+	 * @param Type $type
+	 */
+	public function deleteAction(Type $type) {
+		$this->typeRepository->remove($type);
+		$this->persistenceManager->persistAll();
+		$this->addFlashMessage('Type '.$type->getTitle().' deleted.');
+		$this->redirect('index');
+	}
+
 }
