@@ -17,6 +17,7 @@ class Type {
 	 * Title (WT, EC, AC)
 	 *
 	 * @var string
+	 * @Flow\Validate(type="NotEmpty")
 	 * @Flow\Validate(type="StringLength", options = {"minimum"=1, "maximum"=128})
 	 */
 	protected $title;
