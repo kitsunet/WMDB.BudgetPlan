@@ -1,0 +1,33 @@
+<f:layout name="Default" />
+
+<f:section name="Title">Create Account</f:section>
+<f:section name="Javascripts"></f:section>
+
+<f:section name="Content">
+	<div class="row">
+		<div class="small-12 column">
+			<h1>Create new account</h1>
+			<f:form action="create" controller="Login" method="post" name="loginform" data="{abide:yes}">
+				<div class="row">
+					<label for="username">Username:
+						<f:form.textfield id="username" name="username" placeholder="Username" required="yes" additionalAttributes="{pattern:'[a-zA-Z0-9 ]+'}" />
+						<small class="error">Username is required!</small>
+					</label>
+				</div>
+				<div class="row">
+					<label for="password">Password:
+						<f:form.password id="password" name="password" placeholder="Password" additionalAttributes="{pattern:'[a-zA-Z0-9 ]+', required:required}" />
+						<small class="error">Password is required!</small>
+					</label>
+				</div>
+				<div class="row">
+					<label for="password2">Password2:
+						<f:form.password id="password2" name="password2" placeholder="Repeat Password" data="{equalto:password}" additionalAttributes="{pattern:'[a-zA-Z0-9 ]+', required:required}" />
+						<small class="error">Password is required and needs to be identical to your initial password!</small>
+					</label>
+				</div>
+				<f:form.submit value="Create account" class="button" />
+			</f:form>
+		</div>
+	</div>
+</f:section>

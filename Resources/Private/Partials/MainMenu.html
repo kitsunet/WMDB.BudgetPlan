@@ -1,0 +1,15 @@
+<ul class="left">
+	<f:security.ifAuthenticated>
+		<f:then>
+			<f:security.ifHasRole role="User">
+				<li><a href="#"><span class="fi-euro icon"></span> Create Reimbursement</a></li>
+			</f:security.ifHasRole>
+			<li><f:link.action action="index" controller="Profile"><span class="fi-torso icon"></span> Profile</f:link.action></li>
+			<li><f:link.action action="logout" controller="Login"><span class="fi-unlock icon"></span> Log out</f:link.action></li>
+		</f:then>
+		<f:else>
+			<li><f:link.action action="new" controller="Login"><span class="fi-torso icon"></span> Register</f:link.action></li>
+			<li><f:link.action action="index" controller="Login"><span class="fi-lock icon"></span> Log In</f:link.action></li>
+		</f:else>
+	</f:security.ifAuthenticated>
+</ul>

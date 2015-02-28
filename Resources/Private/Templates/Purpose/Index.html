@@ -1,0 +1,30 @@
+<f:layout name="Default" />
+
+<f:section name="Title">Manage Types</f:section>
+<f:section name="Javascripts"></f:section>
+
+<f:section name="Content">
+	<div class="row">
+		<div class="small-12 column">
+			<table>
+				<tr>
+					<th>Name</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</tr>
+				<f:for each="{types}" as="type" iteration="typeIndex">
+					<tr>
+						<td class="text-center">{type.title}</td>
+						<td class="text-center"><f:link.action action="edit" arguments="{type:type}" class="button success"><span class="fi-page-edit icon"></span> Edit</f:link.action></td>
+						<td><a href="#"  data-reveal-id="deletebox_{typeIndex.index}" class="button alert"><span class="fi-page-delete"></span> Delete</a>
+							<div id="deletebox_{typeIndex.index}" class="reveal-modal hide" data-reveal>
+								<f:link.action action="delete" arguments="{type:type}" class="button alert"><span class="fi-alert icon"></span>Yes, delete type "{type.title}"</f:link.action>
+								<a class="close-reveal-modal">&#215;</a>
+							</div></td>
+					</tr>
+				</f:for>
+			</table>
+			<f:link.action action="new" class="button"><span class="fi-page-add icon"></span> Add</f:link.action>
+		</div>
+	</div>
+</f:section>

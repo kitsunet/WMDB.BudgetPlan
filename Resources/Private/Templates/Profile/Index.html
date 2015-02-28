@@ -1,0 +1,122 @@
+<f:layout name="Default" />
+
+<f:section name="Title">Your Profile</f:section>
+<f:section name="Javascripts"></f:section>
+
+<f:section name="Content">
+	<div class="row">
+		<div class="small-12 column">
+			<h1>Your profile ({username})</h1>
+			<f:for each="{person.userAccount.roles}" as="role">
+				<span class="label success radius">{role}</span>
+			</f:for>
+			<f:form action="update" object="{person}" name="person" enctype="multipart/form-data" data="{abide:yes}">
+				<div class="row">
+					<div class="small-12 medium-6 column">
+						<fieldset>
+							<legend>Personal Data</legend>
+							<div class="row collapse prefix-radius">
+								<div class="small-5 columns">
+									<span class="prefix">First Name:</span>
+								</div>
+								<div class="small-7 columns">
+									<f:form.textfield property="firstname" id="firstname" placeholder="Firstname" required="yes" additionalAttributes="{pattern:'[a-zA-Z0-9 ]+'}" />
+									<small class="error">Firstname is required!</small>
+								</div>
+							</div>
+							<div class="row collapse prefix-radius">
+								<div class="small-5 columns">
+									<span class="prefix">Last Name:</span>
+								</div>
+								<div class="small-7 columns">
+									<f:form.textfield property="lastname" id="lastname" placeholder="Lastname" required="yes" additionalAttributes="{pattern:'[a-zA-Z0-9 ]+'}" />
+									<small class="error">Lastname is required!</small>
+								</div>
+							</div>
+							<div class="row collapse prefix-radius">
+								<div class="small-5 columns">
+									<span class="prefix">Email:</span>
+								</div>
+								<div class="small-7 columns">
+									<f:form.textfield property="email" id="email" placeholder="Email" required="yes" additionalAttributes="{pattern:'email'}" />
+									<small class="error">Email is required!</small>
+								</div>
+							</div>
+						</fieldset>
+					</div>
+					<div class="small-12 medium-6 column">
+						<fieldset>
+							<legend>Bank Data</legend>
+							<div class="row collapse prefix-radius">
+								<div class="small-5 columns">
+									<span class="prefix">Bank Name:</span>
+								</div>
+								<div class="small-7 columns">
+									<f:form.textfield property="bankName" id="bankName" placeholder="Bank Name" required="yes" additionalAttributes="{pattern:'[a-zA-Z0-9 ]+'}" />
+									<small class="error">Bank Name is required!</small>
+								</div>
+							</div>
+							<div class="row collapse prefix-radius">
+								<div class="small-5 columns">
+									<span class="prefix">Bank Address:</span>
+								</div>
+								<div class="small-7 columns">
+									<f:form.textfield property="bankAddress" id="bankAddress" placeholder="Bank Address" required="yes" additionalAttributes="{pattern:'[a-zA-Z0-9 ]+'}" />
+									<small class="error">Bank Address is required!</small>
+								</div>
+							</div>
+							<div class="row collapse prefix-radius">
+								<div class="small-5 columns">
+									<span class="prefix">Sort Code:</span>
+								</div>
+								<div class="small-7 columns">
+									<f:form.textfield property="sortCode" id="sortCode" placeholder="Sort Code" required="yes" additionalAttributes="{pattern:'[a-zA-Z0-9 ]+'}" />
+									<small class="error">Sort Code is required!</small>
+								</div>
+							</div>
+							<div class="row collapse prefix-radius">
+								<div class="small-5 columns">
+									<span class="prefix">Account No.:</span>
+								</div>
+								<div class="small-7 columns">
+									<f:form.textfield property="accountNo" id="accountNo" placeholder="Account No." required="yes" additionalAttributes="{pattern:'[a-zA-Z0-9 ]+'}" />
+									<small class="error">Account No. is required!</small>
+								</div>
+							</div>
+							<div class="row collapse prefix-radius">
+								<div class="small-5 columns">
+									<span class="prefix">Account Name:</span>
+								</div>
+								<div class="small-7 columns">
+									<f:form.textfield property="accountName" id="accountName" placeholder="Account Name" required="yes" additionalAttributes="{pattern:'[a-zA-Z0-9 ]+'}" />
+									<small class="error">Account Name is required!</small>
+								</div>
+							</div>
+							<div class="row collapse prefix-radius">
+								<div class="small-5 columns">
+									<span class="prefix">Swift Code:</span>
+								</div>
+								<div class="small-7 columns">
+									<f:form.textfield property="swiftCode" id="swiftCode" placeholder="XXXX XX XX XXX" required="yes" additionalAttributes="{pattern:'[a-zA-Z0-9 ]+'}" />
+									<small class="error">Swift Code is required!</small>
+								</div>
+							</div>
+							<div class="row collapse prefix-radius">
+								<div class="small-5 columns">
+									<span class="prefix">IBAN Code:</span>
+								</div>
+								<div class="small-7 columns">
+									<f:form.textfield property="iban" id="iban" placeholder="IBAN Code" required="yes" additionalAttributes="{pattern:'[a-zA-Z0-9 ]+'}" />
+									<small class="error">IBAN Code is required!</small>
+								</div>
+							</div>
+						</fieldset>
+					</div>
+				</div>
+				<div class="row">
+					<f:form.submit value="Save Profile" class="button success" />
+				</div>
+			</f:form>
+		</div>
+	</div>
+</f:section>

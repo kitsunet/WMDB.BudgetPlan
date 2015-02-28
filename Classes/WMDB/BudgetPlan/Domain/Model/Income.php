@@ -25,15 +25,25 @@ class Income {
 	protected $amount;
 
 	/**
-	 * @var \WMDB\BudgetPlan\Domain\Model\Person
-	 * @ORM\ManyToOne
-	 */
-	protected $person;
-
-	/**
 	 * @var \DateTime
 	 */
 	protected $date;
+
+	/**
+	 * @var \WMDB\BudgetPlan\Domain\Model\Purpose
+	 * @ORM\ManyToOne(cascade={"persist"})
+	 * @ORM\Column(nullable=true)
+	 */
+	protected $purpose;
+
+	/**
+	 * Title
+	 *
+	 * @var string
+	 * @Flow\Validate(type="NotEmpty")
+	 * @Flow\Validate(type="StringLength", options = {"minimum"=1, "maximum"=128})
+	 */
+	protected $title;
 
 	/**
 	 * @return Type
@@ -64,20 +74,6 @@ class Income {
 	}
 
 	/**
-	 * @return Person
-	 */
-	public function getPerson() {
-		return $this->person;
-	}
-
-	/**
-	 * @param Person $person
-	 */
-	public function setPerson(Person $person) {
-		$this->person = $person;
-	}
-
-	/**
 	 * @return \DateTime
 	 */
 	public function getDate() {
@@ -89,6 +85,34 @@ class Income {
 	 */
 	public function setDate($date) {
 		$this->date = $date;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getTitle() {
+		return $this->title;
+	}
+
+	/**
+	 * @param string $title
+	 */
+	public function setTitle($title) {
+		$this->title = $title;
+	}
+
+	/**
+	 * @return Purpose
+	 */
+	public function getPurpose() {
+		return $this->purpose;
+	}
+
+	/**
+	 * @param Purpose $purpose
+	 */
+	public function setPurpose($purpose) {
+		$this->purpose = $purpose;
 	}
 
 

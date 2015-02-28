@@ -74,6 +74,12 @@ class Person {
 	protected $iban;
 
 	/**
+	 * @var \TYPO3\Flow\Security\Account
+	 * @ORM\OneToOne(cascade={"persist"})
+	 */
+	protected $userAccount;
+
+	/**
 	 * @return string
 	 */
 	public function getFirstname() {
@@ -211,6 +217,20 @@ class Person {
 	 */
 	public function setIban($iban) {
 		$this->iban = $iban;
+	}
+
+	/**
+	 * @return \TYPO3\Flow\Security\Account
+	 */
+	public function getUserAccount() {
+		return $this->userAccount;
+	}
+
+	/**
+	 * @param \TYPO3\Flow\Security\Account $userAccount
+	 */
+	public function setUserAccount($userAccount) {
+		$this->userAccount = $userAccount;
 	}
 
 

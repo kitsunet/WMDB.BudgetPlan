@@ -1,0 +1,34 @@
+<f:layout name="Default" />
+
+<f:section name="Title">Manage Income</f:section>
+<f:section name="Javascripts"></f:section>
+
+<f:section name="Content">
+	<div class="row">
+		<div class="small-12 column">
+			<table>
+				<f:for each="{users}" as="groups" key="groupname">
+					<tr>
+						<th colspan="3"><h5>{groupname}</h5></th>
+					</tr>
+					<f:for each="{groups}" as="user">
+						<tr>
+							<td>{user.AccountIdentifier}</td>
+							<td>
+								<f:if condition="{0: groupname} != {0: 'Admins'}">
+									<f:link.action action="promote" controller="user" arguments="{user:user}" class="button success tiny radius"><span class="fi-arrow-up icon"></span> Promote</f:link.action>
+								</f:if>
+							</td>
+							<td>
+								<f:if condition="{0: groupname} != {0: 'Guests'}">
+									<f:link.action action="demote" controller="user" arguments="{user:user}" class="button alert tiny radius"><span class="fi-arrow-down icon"></span> Demote</f:link.action>
+								</f:if>
+							</td>
+						</tr>
+					</f:for>
+				</f:for>
+			</table>
+			<hr />
+		</div>
+	</div>
+</f:section>

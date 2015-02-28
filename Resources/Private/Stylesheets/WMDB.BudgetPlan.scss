@@ -18,14 +18,14 @@
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/inline-lists";
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/joyride";
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/keystrokes";
-//@import "../Libraries/bower_components/foundation/scss/foundation/components/labels";
+@import "../Libraries/bower_components/foundation/scss/foundation/components/labels";
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/magellan";
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/orbit";
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/pagination";
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/panels";
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/pricing-tables";
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/progress-bars";
-//@import "../Libraries/bower_components/foundation/scss/foundation/components/reveal";
+@import "../Libraries/bower_components/foundation/scss/foundation/components/reveal";
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/side-nav";
 @import "../Libraries/bower_components/foundation/scss/foundation/components/split-buttons";
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/sub-nav";
@@ -38,3 +38,11 @@
 @import "../Libraries/bower_components/foundation/scss/foundation/components/type";
 //@import "../Libraries/bower_components/foundation/scss/foundation/components/offcanvas";
 @import "../Libraries/bower_components/foundation/scss/foundation/components/visibility";
+
+.biggerIcon > a {
+  line-height: 2.6rem !important;
+}
+
+.biggerIcon span.fi-widget {
+  font-size: 1.3rem;
+}

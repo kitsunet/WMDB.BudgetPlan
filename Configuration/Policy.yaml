@@ -1,0 +1,26 @@
+resources:
+  methods:
+    Income: 'method(WMDB\BudgetPlan\Controller\IncomeController->.*Action())'
+    Type: 'method(WMDB\BudgetPlan\Controller\TypeController->.*Action())'
+    Purpose: 'method(WMDB\BudgetPlan\Controller\PurposeController->.*Action())'
+    Person: 'method(WMDB\BudgetPlan\Controller\PersonController->.*Action())'
+    Reimbursement: 'method(WMDB\BudgetPlan\Controller\ReimbursementController->.*Action())'
+    Profile: 'method(WMDB\BudgetPlan\Controller\ProfileController->.*Action())'
+roles:
+  Admin: [User]
+  User: []
+  Guest: []
+acls:
+  Admin:
+    methods:
+      Income: GRANT
+      Type: GRANT
+      Purpose: GRANT
+      Person: GRANT
+  User:
+    methods:
+      Reimbursement: GRANT
+      Profile: GRANT
+  Guest:
+    methods:
+      Profile: GRANT

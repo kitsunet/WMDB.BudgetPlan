@@ -1,0 +1,52 @@
+<f:layout name="Default" />
+
+<f:section name="Title">Add Income</f:section>
+<f:section name="Javascripts">
+	<link rel="stylesheet" href="<f:uri.resource path='css/foundation-datepicker.css' />" />
+</f:section>
+
+<f:section name="Content">
+	<div class="row">
+		<div class="small-12 column">
+			<h1>Add new Income</h1>
+			<f:form.validationResults>
+				<f:if condition="{validationResults.flattenedErrors}">
+					<ul class="errors">
+						<f:for each="{validationResults.flattenedErrors}" as="errors" key="propertyPath">
+							<li>{propertyPath}
+								<ul>
+									<f:for each="{errors}" as="error">
+										<li>{error.code}: {error}</li>
+									</f:for>
+								</ul>
+							</li>
+						</f:for>
+					</ul>
+				</f:if>
+			</f:form.validationResults>
+			<f:form action="create" object="{income}" name="income" enctype="multipart/form-data" data="{abide:yes}">
+				<div class="row">
+					<label for="title">Title:
+						<f:form.textfield id="title" property="title" placeholder="Title" required="yes" additionalAttributes="{pattern:'[a-zA-Z0-9 ]+'}" />
+						<small class="error">Title is required!</small>
+					</label>
+				</div>
+				<div class="row">
+					<label for="amount">Amount:
+						<f:form.textfield id="amount" property="amount" placeholder="Amount" required="yes" additionalAttributes="{pattern:'[0-9]{1,7}.[0-9]{2}'}" />
+						<small class="error">Amount is required! Please use "." as decimal separator.</small>
+					</label>
+				</div>
+				<div class="row">
+					<label for="date">Date:
+						<f:form.textfield property="date" id="date" placeholder="Date" required="yes" class="input-append date fdatepicker" data="{date-format:dd.mm.yyyy}" />
+						<small class="error">Date is required!</small>
+					</label>
+				</div>
+				<div class="row">
+					<f:form.submit value="Save" class="button success" />
+				</div>
+			</f:form>
+		</div>
+	</div>
+</f:section>

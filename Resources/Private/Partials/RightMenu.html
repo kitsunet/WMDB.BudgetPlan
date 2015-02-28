@@ -1,8 +1,13 @@
-<ul class="right">
-	<li class="has-dropdown">
-		<a href="javascript:return false;"><span class="fi-widget icon"></span> Admin Functions</a>
-		<ul class="dropdown">
-			<li><f:link.action action="index" controller="type"><span class="fi-book icon"></span> Manage Types</f:link.action></li>
-		</ul>
-	</li>
-</ul>
+<f:security.ifHasRole role="Admin">
+	<ul class="right">
+		<li class="has-dropdown biggerIcon">
+			<a href="javascript:return false;"><span class="fi-widget icon "></span></a>
+			<ul class="dropdown">
+				<li><f:link.action action="index" controller="type"><span class="fi-book icon"></span> Manage Types</f:link.action></li>
+				<li><f:link.action action="index" controller="income"><span class="fi-euro icon"></span> Manage Income</f:link.action></li>
+				<li><f:link.action action="index" controller="user"><span class="fi-torsos icon"></span> Manage Users</f:link.action></li>
+				<li><f:link.action action="index" controller="purpose"><span class="fi-calendar icon"></span> Manage Purposes</f:link.action></li>
+			</ul>
+		</li>
+	</ul>
+</f:security.ifHasRole>
