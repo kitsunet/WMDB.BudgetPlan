@@ -9,13 +9,14 @@ namespace WMDB\BudgetPlan\Controller;
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Mvc\Controller\ActionController;
 use WMDB\BudgetPlan\Domain\Model\Purpose;
+use WMDB\BudgetPlan\Domain\Model\Reimbursement;
 
 /**
  * Class StandardController
  *
  * @package WMDB\BudgetPlan\Controller
  */
-class PurposeController extends ActionController {
+class ReimbursementController extends ActionController {
 
 	/**
 	 * @var \WMDB\BudgetPlan\Domain\Repository\PurposeRepository
@@ -32,23 +33,59 @@ class PurposeController extends ActionController {
 	protected $typeRepository;
 
 	/**
+	 * Inject the PersonRepository
+	 *
+	 * @var \WMDB\BudgetPlan\Domain\Repository\PersonRepository
+	 * @Flow\Inject
+	 */
+	protected $personRepository;
+
+	/**
+	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Security\Authentication\AuthenticationManagerInterface
+	 */
+	protected $authManager;
+
+	/**
+	 * Inject the AccountRepository
+	 *
+	 * @var \TYPO3\Flow\Security\AccountRepository
+	 * @Flow\Inject
+	 */
+	protected $accountRepository;
+
+	/**
 	 * @return void
 	 */
 	public function indexAction() {
-		$purposes = $this->purposeRepository->findAll();
-		$this->view->assign('purposes', $purposes);
+
 	}
 
 	public function newAction() {
 		$types = $this->typeRepository->findAll();
 		$this->view->assign('types', $types);
+		$currentUser = $this->authManager->getSecurityContext()->getAccount();
+		$this->view->assign('username', $currentUser->getAccountIdentifier());
+		$personObject = $this->personRepository->findOneByUserAccount($currentUser);
+		if ($personObject === NULL) {
+			// Create dummy object
+			$personObject = new Person();
+			$personObject->setUserAccount($currentUser = $this->authManager->getSecurityContext()->getAccount());
+		}
+		$this->view->assign('person', $personObject);
 	}
 
 	/**
 	 * Pre-Processing for the create acrtion
 	 */
 	public function initializeCreateAction() {
-		$propertyMappingConfiguration = $this->fixDate();
+		$propertyMappingConfiguration = $this->arguments->getArgument('reimbursement')->getPropertyMappingConfiguration();
+//		$propertyMappingConfiguration = $this->fixDate();
+//		foreach ($_POST['reimbursement']['entries'] as $key => $_) {
+		$propertyMappingConfiguration->allowProperties('reimbursement.*');
+//		}
+
+//		$propertyMappingConfiguration->allowProperties('1');
 	}
 
 	/**
@@ -61,12 +98,13 @@ class PurposeController extends ActionController {
 	/**
 	 * Creates a new Purpose
 	 *
-	 * @param Purpose $purpose
+	 * @param Reimbursement $reimbursement
 	 */
-	public function createAction(Purpose $purpose) {
-		$this->purposeRepository->add($purpose);
-		$this->addFlashMessage('Purpose '.$purpose->getTitle().' added.');
-		$this->redirect('index');
+	public function createAction(Reimbursement $reimbursement) {
+		\TYPO3\Flow\var_dump($reimbursement);
+//		$this->purposeRepository->add($purpose);
+//		$this->addFlashMessage('Purpose '.$purpose->getTitle().' added.');
+//		$this->redirect('index');
 	}
 
 	/**
@@ -107,7 +145,7 @@ class PurposeController extends ActionController {
 	 * @return \TYPO3\Flow\Property\PropertyMappingConfiguration
 	 */
 	protected function fixDate(){
-		$propertyMappingConfiguration = $this->arguments->getArgument('purpose')->getPropertyMappingConfiguration();
+		$propertyMappingConfiguration = $this->arguments->getArgument('reimbursement')->getPropertyMappingConfiguration();
 		$propertyMappingConfiguration
 			->forProperty('date')
 			->setTypeConverterOption(

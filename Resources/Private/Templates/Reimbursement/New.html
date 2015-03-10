@@ -1,0 +1,47 @@
+<f:layout name="Default" />
+
+<f:section name="Title">Create Reimbursement</f:section>
+<f:section name="Javascripts">
+	<link rel="stylesheet" href="<f:uri.resource path='css/foundation-datepicker.css' />" />
+</f:section>
+
+<f:section name="Content">
+	<div class="row">
+		<h1>Create new reimbursement for {person.firstname} {person.lastname}</h1>
+		<div class="small-12">
+			<f:form action="create" object="{reimbursement}" name="reimbursement" enctype="multipart/form-data" data="{abide:yes}">
+				<label for="date">Date:
+					<f:form.textfield property="date" id="date" placeholder="Date" required="yes" class="input-append date fdatepicker" data="{date-format:dd.mm.yyyy}" />
+					<small class="error">Date is required!</small>
+				</label>
+				<fieldset>
+					<legend>Positions</legend>
+					<input type="button" id="addPosition" class="button tiny radius" value="Add new position" />
+					<div id="positions" class="rowz">
+						<div id="firstPosition" class="row">
+							<div class="small-4 column">
+								<label>Type:
+									<f:form.select property="entries.{entries -> f:count()}.type" options="{types}" prependOptionLabel="- select -" optionLabelField="title" />
+								</label>
+							</div>
+							<div class="small-4 column">
+								<label>Amount:
+									<f:form.textfield property="entries.{entries -> f:count()}.amount" placeholder="amount" required="yes" additionalAttributes="{pattern:'[0-9]{1,7}.[0-9]{2}'}" />
+									<small class="error">Amount is required!</small>
+								</label>
+							</div>
+							<div class="small-3 column">
+								<label for="receipt">Receipt:
+									<f:form.textfield id="receipt" property="entries.{entries -> f:count()}.receipt" placeholder="receipt" />
+								</label>
+							</div>
+							<div class="small-1 column"><a class="button inline alert tiny radius removeRow">X</a></div>
+						</div>
+					</div>
+				</fieldset>
+				<f:form.submit value="Save" class="button success" />
+			</f:form>
+		</div>
+
+	</div>
+</f:section>

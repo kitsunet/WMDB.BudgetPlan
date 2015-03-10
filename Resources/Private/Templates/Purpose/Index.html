@@ -1,24 +1,29 @@
 <f:layout name="Default" />
 
-<f:section name="Title">Manage Types</f:section>
+<f:section name="Title">Manage Purposes</f:section>
 <f:section name="Javascripts"></f:section>
 
 <f:section name="Content">
 	<div class="row">
+		<h1>Planned budget purposes</h1>
 		<div class="small-12 column">
 			<table>
 				<tr>
 					<th>Name</th>
+					<th>Type</th>
+					<th>Estimated</th>
 					<th>Edit</th>
 					<th>Delete</th>
 				</tr>
-				<f:for each="{types}" as="type" iteration="typeIndex">
+				<f:for each="{purposes}" as="purpose" iteration="typeIndex">
 					<tr>
-						<td class="text-center">{type.title}</td>
-						<td class="text-center"><f:link.action action="edit" arguments="{type:type}" class="button success"><span class="fi-page-edit icon"></span> Edit</f:link.action></td>
+						<td class="text-center">{purpose.title}</td>
+						<td class="text-center">{purpose.type.title}</td>
+						<td class="text-right"><f:format.currency>{purpose.estimatedCost}</f:format.currency> &euro;</td>
+						<td class="text-center"><f:link.action action="edit" arguments="{purpose:purpose}" class="button success"><span class="fi-page-edit icon"></span> Edit</f:link.action></td>
 						<td><a href="#"  data-reveal-id="deletebox_{typeIndex.index}" class="button alert"><span class="fi-page-delete"></span> Delete</a>
 							<div id="deletebox_{typeIndex.index}" class="reveal-modal hide" data-reveal>
-								<f:link.action action="delete" arguments="{type:type}" class="button alert"><span class="fi-alert icon"></span>Yes, delete type "{type.title}"</f:link.action>
+								<f:link.action action="delete" arguments="{purpose:purpose}" class="button alert"><span class="fi-alert icon"></span>Yes, delete type "{type.title}"</f:link.action>
 								<a class="close-reveal-modal">&#215;</a>
 							</div></td>
 					</tr>

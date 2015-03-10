@@ -2,7 +2,7 @@
 	<f:security.ifAuthenticated>
 		<f:then>
 			<f:security.ifHasRole role="User">
-				<li><a href="#"><span class="fi-euro icon"></span> Create Reimbursement</a></li>
+				<li><f:link.action action="new" controller="Reimbursement"><span class="fi-euro icon"></span> Create Reimbursement</f:link.action></li>
 			</f:security.ifHasRole>
 			<li><f:link.action action="index" controller="Profile"><span class="fi-torso icon"></span> Profile</f:link.action></li>
 			<li><f:link.action action="logout" controller="Login"><span class="fi-unlock icon"></span> Log out</f:link.action></li>

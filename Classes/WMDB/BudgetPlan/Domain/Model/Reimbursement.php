@@ -6,6 +6,7 @@ namespace WMDB\BudgetPlan\Domain\Model;
  *                                                                        *
  *                                                                        */
 
+use Doctrine\Common\Collections\ArrayCollection;
 use TYPO3\Flow\Annotations as Flow;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,7 +26,14 @@ class Reimbursement {
 	protected $person;
 
 	/**
+	 * @var ArrayCollection<\WMDB\BudgetPlan\Domain\Model\Entry>
+	 * @ORM\OneToMany(cascade={"persist"}, mappedBy="extension")
+	 */
+	protected $entries;
+
+	/**
 	 * @var float
+	 * @Flow\Transient
 	 */
 	protected $amount;
 
@@ -69,6 +77,42 @@ class Reimbursement {
 	 */
 	public function setAmount($amount) {
 		$this->amount = $amount;
+	}
+
+	/**
+	 * @param \Doctrine\Common\Collections\Collection $entries
+	 */
+	public function setEntries($entries) {
+		$this->entries = $entries;
+	}
+
+	/**
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getEntries() {
+		return $this->entries;
+	}
+
+	/**
+	 * Sets up the Doctrine collections
+	 */
+	public function __construct() {
+		$this->versions = new ArrayCollection();
+	}
+
+	/**
+	 * @param Entry $entry
+	 */
+	public function addVersion(Entry $entry) {
+		$entry->setReimbursement($this);
+		$this->versions->add($entry);
+	}
+
+	/**
+	 * @param Entry $entry
+	 */
+	public function removeVersion(Entry $entry) {
+		$this->entries->removeElement($entry);
 	}
 
 

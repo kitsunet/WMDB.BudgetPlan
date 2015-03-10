@@ -32,6 +32,26 @@ class Entry {
 	protected $receipt;
 
 	/**
+	 * @var \WMDB\BudgetPlan\Domain\Model\Reimbursement
+	 * @ORM\ManyToOne(cascade={"persist"}, inversedBy="entries")
+	 */
+	protected $reimbursement;
+
+	/**
+	 * @return Reimbursement
+	 */
+	public function getReimbursement() {
+		return $this->reimbursement;
+	}
+
+	/**
+	 * @param Reimbursement $reimbursement
+	 */
+	public function setReimbursement($reimbursement) {
+		$this->reimbursement = $reimbursement;
+	}
+
+	/**
 	 * @return Type
 	 */
 	public function getType() {

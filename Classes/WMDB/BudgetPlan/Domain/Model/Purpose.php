@@ -31,6 +31,7 @@ class Purpose {
 
 	/**
 	 * @var float
+	 * @ORM\Column(nullable=true)
 	 */
 	protected $effectiveCost;
 
