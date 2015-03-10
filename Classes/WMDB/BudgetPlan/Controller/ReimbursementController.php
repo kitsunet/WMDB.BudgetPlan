@@ -8,6 +8,7 @@ namespace WMDB\BudgetPlan\Controller;
 
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Mvc\Controller\ActionController;
+use TYPO3\Flow\Property\TypeConverter\PersistentObjectConverter;
 use WMDB\BudgetPlan\Domain\Model\Purpose;
 use WMDB\BudgetPlan\Domain\Model\Reimbursement;
 
@@ -79,14 +80,11 @@ class ReimbursementController extends ActionController {
 	 * Pre-Processing for the create acrtion
 	 */
 	public function initializeCreateAction() {
+		$this->fixDate();
 		$propertyMappingConfiguration = $this->arguments->getArgument('reimbursement')->getPropertyMappingConfiguration();
-		$propertyMappingConfiguration->forProperty('entries')->allowAllProperties()->forProperty('*')->allowAllProperties();
-//		$propertyMappingConfiguration = $this->fixDate();
-////		foreach ($_POST['reimbursement']['entries'] as $key => $_) {
-//		$propertyMappingConfiguration->allowProperties('reimbursement.*');
-//		}
-
-//		$propertyMappingConfiguration->allowProperties('1');
+		$entriesConfiguration = $propertyMappingConfiguration->forProperty('entries')->allowAllProperties()->forProperty('*');
+		$entriesConfiguration->allowAllProperties();
+		$entriesConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, TRUE);
 	}
 
 	/**
