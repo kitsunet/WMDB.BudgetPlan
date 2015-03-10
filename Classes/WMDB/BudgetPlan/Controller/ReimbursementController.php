@@ -80,9 +80,10 @@ class ReimbursementController extends ActionController {
 	 */
 	public function initializeCreateAction() {
 		$propertyMappingConfiguration = $this->arguments->getArgument('reimbursement')->getPropertyMappingConfiguration();
+		$propertyMappingConfiguration->forProperty('entries')->allowAllProperties()->forProperty('*')->allowAllProperties();
 //		$propertyMappingConfiguration = $this->fixDate();
-//		foreach ($_POST['reimbursement']['entries'] as $key => $_) {
-		$propertyMappingConfiguration->allowProperties('reimbursement.*');
+////		foreach ($_POST['reimbursement']['entries'] as $key => $_) {
+//		$propertyMappingConfiguration->allowProperties('reimbursement.*');
 //		}
 
 //		$propertyMappingConfiguration->allowProperties('1');
